@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video to Canvas</title>
+</head>
+<body>
+    <video id="myVideo" width="900" height="600" controls autoplay>
+        <source src="pic.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <canvas id="myCanvas" width="900" height="600"></canvas>
+
+    <script>
+        // 获取 video 元素和 canvas 元素
+        var video = document.getElementById('myVideo');
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+
+        // 在视频播放时触发
+        video.addEventListener('play', function () {
+            // 定期绘制视频帧到 canvas
+            function drawFrame() {
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                requestAnimationFrame(drawFrame);
+            }
+
+            drawFrame();
+        });
+    
+
+        // 如果需要，可以在适当的时机调用 video.play() 来开始播放视频
+    </script>
+</body>
+</html>
+
